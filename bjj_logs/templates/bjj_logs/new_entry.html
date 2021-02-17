@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'bjj_logs/base.html' %}
+
+    {% block content %}
+
+    <p><a href="{% url 'bjj_logs:topic' topic.id %}">{{ topic }}</a> </p>
+
+    <p>Add a new entry</p>
+    <form action="{% url 'bjj_logs:new_entry' topic.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add entry</button>
+    </form>
+
+    {% endblock content %}
+
+</body>
+</html>

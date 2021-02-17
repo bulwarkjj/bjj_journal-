@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>BJJ logs</p>
+
+    {% extends "bjj_logs/base.html" %}
+
+    {% block page_header %}
+        <div class="jumbotron">
+            <h1 class="display-3">Track your skills</h1>
+
+            <p class="lead">Make your own BJJ log of the techniques and skills learned.  Whenever you
+                learn something new, make an entry that helps you remember that skill.
+            </p>
+
+            <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+        </div>
+
+    {% endblock page_header %}
+
+</body>
+</html>
