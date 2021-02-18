@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
@@ -9,6 +9,7 @@ def index(request):
     """The home page for bjj logs."""
     return render(request, 'bjj_logs/index.html')
 
+
 @login_required
 def topics(request):
     """Show all topics"""
@@ -16,16 +17,18 @@ def topics(request):
     context = {'topics': topics}
     return render(request, 'bjj_logs/topics.html', context)
 
+
 @login_required
 def topic(request, topic_id):
     """Show a single topic and all it's entries"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     # Makes sure the topic belongs to the current user
     if topic.owner != request.user:
         raise Http404
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'bjj_logs/topic.html', context)
+
 
 @login_required
 def new_topic(request):
@@ -47,6 +50,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request, "bjj_logs/new_topic.html", context)
 
+
 @login_required
 def new_entry(request, topic_id):
     """user adds a new entry for a set topic"""
@@ -67,6 +71,7 @@ def new_entry(request, topic_id):
     # Display a blank or invaild form.
     context = {'topic': topic, 'form': form}
     return render(request, "bjj_logs/new_entry.html", context)
+
 
 @login_required
 def edit_entry(request, entry_id):
