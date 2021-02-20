@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
+
 
 
 def index(request):
@@ -94,3 +97,21 @@ def edit_entry(request, entry_id):
 
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, "bjj_logs/edit_entry.html", context)
+
+
+@login_required
+def delete_entry(request, entry_id):
+  """Delete an existing entry"""
+  entry = get_object_or_404(Entry, id=entry_id)  # getting the entry object the user wants to delete
+    # topic=entry.topic
+  entry.delete()  # Delete the entry
+  context = {'entry': entry}  # I don't even think we need to pass this but I just want to be safe and pass something
+  return render(request, 'bjj_logs/delete_entry.html', context)
+
+
+@login_required
+def delete_topic(request, topic_id):
+    topic = get_object_or_404(Topic, id=topic_id)
+    topic.delete()
+    context = {'topic': topic}
+    return render(request, 'bjj_logs/delete_topic.html', context)

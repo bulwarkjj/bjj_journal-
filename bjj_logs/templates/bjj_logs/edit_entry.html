@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Bulwark Jiu Jitsu</title>
 </head>
 <body>
     {% extends 'bjj_logs/base.html' %}
@@ -19,8 +19,12 @@
         <form action="{% url 'bjj_logs:edit_entry' entry.id %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button name="submit">Save changes</button>
+            <button name="submit" class="btn btn-success">Save changes</button>
         </form>
+
+
+        <a class="btn btn-danger" href="{% url 'bjj_logs:delete_entry' entry.id %}" role="button">Delete Entry</a>
+
 
     {% endblock content %}
 
