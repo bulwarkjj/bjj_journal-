@@ -1,4 +1,5 @@
 from django.db import models
+from embed_video.fields import EmbedVideoField
 from django.contrib.auth.models import User
 
 
@@ -11,6 +12,7 @@ class Topic(models.Model):
     def __str__(self):
         """Return a string representation of the model"""
         return self.text
+
 
 class Entry(models.Model):
     """Something specific learned about the topic"""
@@ -25,3 +27,13 @@ class Entry(models.Model):
     def __str__(self):
         """Retrun a string representation of the model"""
         return f"{self.text}..."
+
+
+class Youtube(models.Model):
+    video = EmbedVideoField()
+    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+
+
+

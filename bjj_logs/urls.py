@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 from . import views
 
 """Defines URL patterns for bjj_logs"""
@@ -21,4 +22,6 @@ urlpatterns = [
     path('delete_topic/<int:topic_id>/', views.delete_topic, name='delete_topic'),
     # Page for editing an entry.
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+    # Video page
+    path('video', views.video, name='video')
 ]

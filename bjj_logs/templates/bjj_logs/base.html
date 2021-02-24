@@ -28,12 +28,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'bjj_logs:topics' %}">Topics</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'bjj_logs:video' %}">Videos</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                    <!--<li class="nav-item">
-                        <span class="navbar-text">Hello, {{ user.username }}.</span>
-                    </li>-->
+                    <li class="nav-item">
+                        <span class="navbar-text">you are logged in as {{ user.username }}.</span>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
                     </li>

@@ -10,6 +10,7 @@
 <body>
     {% extends 'bjj_logs/base.html' %}
 
+
     {% block page_header %}
         <h3>{{ topic }}</h3>
     {% endblock page_header %}
@@ -32,6 +33,8 @@
         {% empty %}
             <p>There are no entries for this skill yet</p>
         {% endfor %}
+
+
 
         <a class="btn btn-danger" href="{% url 'bjj_logs:delete_topic' topic.id %}" role="button">Delete Topic</a>
 

@@ -10,6 +10,8 @@
 <body>
     {% extends 'bjj_logs/base.html' %}
 
+
+
     {% block page_header %}
         <h1>Skills</h1>
     {% endblock page_header %}
@@ -26,7 +28,8 @@
             {% endfor %}
         </ul>
 
-    <h3><a href="{%url 'bjj_logs:new_topic' %}">Add a new skill</a></h3>
+
+        <h3><a href="{%url 'bjj_logs:new_topic' %}">Add a new skill</a></h3>
 
 
     {% endblock content %}

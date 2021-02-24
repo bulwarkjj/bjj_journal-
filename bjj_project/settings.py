@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
 
     # Third party apps
     'bootstrap4',
+
+    # Embedded videos
+    'embed_video',
 
     # Default apps
     'django.contrib.admin',
@@ -71,6 +75,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+
+
             ],
         },
     },
@@ -114,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
@@ -128,12 +135,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Media
+
+
+
 # My settings
 LOGIN_URL = 'users:login'
 
 # Heroku settings
-import os
-import django_heroku
 django_heroku.settings(locals())
 
 if os.environ.get('DEBUG') == 'TRUE':
